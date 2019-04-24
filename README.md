@@ -13,7 +13,7 @@
 |属性名|数据类型|属性介绍|默认值|
 |:---:|:---:|:---:|:---:|
 |fatherRef|string|最外层的ref|fatherRef|
-|className|string或者模块化css类|最外层的ref|''|
+|className|string或者模块化css类|自定义类名|""|
 |style|object|自定义样式|{}|
 |link|string|标签中存真实地址的属性名|data-original|
 |interval|number|懒加载交流间隔|100|
