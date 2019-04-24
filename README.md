@@ -3,11 +3,11 @@
 
 ## 简介
 
-### component 
+### component文件夹 
 	react懒加载组件
 
-### page
-	具体使用
+### page文件夹
+	组件具体使用方法及demo
 	
 ### parmas
 |属性名|数据类型|属性介绍|默认值|
