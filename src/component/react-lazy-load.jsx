@@ -1,17 +1,19 @@
 /**
  * 图片懒加载
- * @state
+ *
+ * @parmas fatherRef string 最外层的ref
+ * @parmas className string/style mudule 自定义类名
+ * @parmas style object 自定义样式
+ * @parmas link string 标签中存真实地址的属性名
+ * @parmas interval number 懒加载交流间隔
+ *
+ * @this.state
  *  imgList array 需要懒加载的dom节点数组
  *  mutationObserver object 监听父节点内子元素dom节点发生改变的类
  *  props obejct 外部传入的props，在state中封装存储
- * @props
- *  fatherRef string 最外层的ref
- *  className string/style mudule 自定义类名
- *  style object 自定义样式
- *  link string 标签中存真实地址的属性名
  */
-
 import React from 'react';
+import throttle from '../utils/func/throttle';
 
 class ReactLazyLoad extends React.Component{
 	constructor(props){
@@ -22,6 +24,7 @@ class ReactLazyLoad extends React.Component{
 			props : {}
 		}
 		this.imgRender = this.imgRender.bind(this);
+		this.imgRenderThrottle;
 	}
 
 	componentDidMount(){
@@ -29,32 +32,11 @@ class ReactLazyLoad extends React.Component{
 	}
 
 	componentWillUnmount(){
-		window.removeEventListener('scroll', this.imgRender);
+		window.removeEventListener('scroll', this.imgRenderThrottle);
 	}
 
 	componentWillReceiveProps(nextProps){
 		this.setState({ props : nextProps }, () => this.init());
-	}
-
-	throttle(fn = function(){ console.error('please enter callback') }, interval = 500){
-		let timer;              	//定时器
-		let firstTime = true;   	//是否是第一次调用
-		return function(){
-			let args = arguments;
-			let self = this;     	//实际操作中是window
-			if(firstTime){      	//如果是第一次调用不需要延迟执行
-				fn.apply(self,args);
-				return firstTime = false;
-			}
-			if(timer){          	//如果定时器还在，说明前一次延迟执行还没有完成
-				return false;
-			}
-			timer = setTimeout(function(){  //延迟一段时间执行
-				clearTimeout(timer);
-				timer = null;
-				fn.apply(self,args);
-			}, interval)
-		}
 	}
 
 	init(){
@@ -71,7 +53,7 @@ class ReactLazyLoad extends React.Component{
 
 	//开始进行图片加载
 	startRenderImg(){
-		window.removeEventListener('scroll', this.imgRender);
+		window.removeEventListener('scroll', this.imgRenderThrottle);
 		let { fatherRef } = this.state.props;
 		let fatherNode = this.refs[fatherRef];
 		let childrenNodes = fatherNode && fatherNode.childNodes;
@@ -86,11 +68,13 @@ class ReactLazyLoad extends React.Component{
 
 	//添加滚动监听
 	addScroll(){
-		let { fatherRef } = this.state.props;
+		let { fatherRef , interval } = this.state.props;
+		//设置滚动节流函数
+		this.imgRenderThrottle = throttle(this.imgRender, interval);
 		if(fatherRef){
-			this.refs[fatherRef].addEventListener('scroll', this.imgRender)
+			this.refs[fatherRef].addEventListener('scroll', this.imgRenderThrottle)
 		}else{
-			window.addEventListener('scroll', this.imgRender)
+			window.addEventListener('scroll', this.imgRenderThrottle)
 		}
 	}
 
@@ -161,7 +145,8 @@ ReactLazyLoad.defaultProps = {
 	fatherRef : 'fatherRef',
 	className : '',
 	style : {},
-	link : 'data-original'
+	link : 'data-original',
+	interval : 100
 }
 
 export default ReactLazyLoad;
