@@ -4,7 +4,7 @@
 ## 简介
 
 ### component文件夹 
-	react懒加载组件
+	react图片懒加载组件源码
 
 ### page文件夹
 	组件具体使用方法及demo
