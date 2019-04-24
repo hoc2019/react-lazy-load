@@ -1,5 +1,5 @@
 # react-lazy-load
-基于react懒加载
+基于react的图片懒加载
 
 ## 简介
 
