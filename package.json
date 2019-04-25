@@ -1,0 +1,39 @@
+{
+    "name": "react-lazy-load",
+    "version": "1.0.0",
+    "description": "基于react的图片懒加载",
+    "main": "index.js",
+    "scripts": {
+        "build": "set NODE_ENV=production&& rollup -c",
+        "build:dev": "set NODE_ENV=development && rollup -c"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sl2782087/react-lazy-load.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/sl2782087/react-lazy-load/issues"
+    },
+    "homepage": "https://github.com/sl2782087/react-lazy-load#readme",
+    "dependencies": {
+        "rollup": "^1.10.1"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.4.3",
+        "@babel/preset-env": "^7.4.3",
+        "@babel/preset-react": "^7.0.0",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "rollup-plugin-babel": "^4.3.2",
+        "rollup-plugin-commonjs": "^9.3.4",
+        "rollup-plugin-node-resolve": "^4.2.3",
+        "rollup-plugin-replace": "^2.2.0",
+        "rollup-plugin-uglify": "^6.0.2"
+    },
+    "peerDependencies": {
+        "react": ">= 16.x.x"
+    }
+}
