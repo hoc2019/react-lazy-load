@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactLazyLoad from './ReactLazyLoad';
-import LazyLoad from './LazyLoad';
 import styles from './index.less';
 
 class LazyLoadCase extends React.Component{
@@ -87,6 +86,6 @@ class LazyLoadCase extends React.Component{
 }
 
 ReactDOM.render(
-	<LazyLoadCase>,
+	<LazyLoadCase/>,
 	document.getElementById('root')
 )
