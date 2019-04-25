@@ -24,7 +24,7 @@ class ReactLazyLoad extends React.Component{
 			props : {}
 		}
 		this.imgRender = this.imgRender.bind(this);
-		this.imgRenderThrottle;
+		this.imgRenderThrottle = undefined;
 	}
 
 	componentDidMount(){
