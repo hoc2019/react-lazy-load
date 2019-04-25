@@ -37,17 +37,6 @@ class LazyLoadCase extends React.Component{
 		return picArr
 	}
 
-	addPic(){
-		let { imgArr , link } = this.state;
-		let picArr = [];
-		for(let i = 0 ; i < imgArr.length ; i++){
-			let obj = { key : i , className : styles.img };
-			obj[link] = imgSrc;
-			picArr.push(React.createElement('div', obj));
-		}
-		return picArr;
-	}
-
 	render(){
 		let { fatherId , renderItem , imgSrc , imgArr , link , interval } = this.state;
 		return(
