@@ -21,4 +21,5 @@
 
 ## ps
 	暂时懒得发npm包，可以自行去"src/component/react-lazy-load.jsx"下载源码使用
+	也可以项目整下来npm install 之后 npm run build使用构建好的代码
 	具体使用方法见"page/index.jsx"
