@@ -6,6 +6,8 @@
  * @parmas style object 自定义样式
  * @parmas link string 标签中存真实地址的属性名
  * @parmas interval number 懒加载交流间隔
+ * @parmas distance number 距离下方{distance}px的时候即可加载图片
+ * @parmas distance number 距离浏览器底部(注意是浏览器窗口底部){distance}px的时候即可加载图片
  *
  * @this.state
  *  imgList array 需要懒加载的dom节点数组
@@ -70,7 +72,7 @@ class ReactLazyLoad extends React.Component{
 	addScroll(){
 		let { fatherRef , interval } = this.state.props;
 		//设置滚动节流函数
-		this.imgRenderThrottle = throttle(this.imgRender, interval);
+		this.imgRenderThrottle = interval > 0 ? throttle(this.imgRender, interval) : this.imgRender;
 		if(fatherRef){
 			this.refs[fatherRef].addEventListener('scroll', this.imgRenderThrottle)
 		}else{
@@ -99,10 +101,11 @@ class ReactLazyLoad extends React.Component{
 
 	//图片是否符合加载条件
 	isImgLoad(node){
+		let { distance } = this.state.props;
 		//图片距离顶部的距离 <= 浏览器可视化的高度，说明需要进行虚拟src与真实src的替换了
 		let bound = node.getBoundingClientRect();
 		let clientHeight = window.innerHeight;
-		return bound.top <= clientHeight;
+		return bound.top <= clientHeight - distance;
 	}
 
 	//每一个图片的加载
@@ -146,7 +149,8 @@ ReactLazyLoad.defaultProps = {
 	className : '',
 	style : {},
 	link : 'data-original',
-	interval : 100
+	interval : 100,
+	distance : 0,
 }
 
 export default ReactLazyLoad;
