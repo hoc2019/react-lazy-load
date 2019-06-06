@@ -17,6 +17,7 @@
 |style|object|自定义样式|{}|
 |link|string|标签中存真实地址的属性名|data-original|
 |interval|number|懒加载节流间隔|100|
+|distance|number|距离浏览器底部多少px的时候加载图片|100|
 
 ## ps
 	暂时懒得发npm包，可以自行去"src/component/react-lazy-load.jsx"下载源码使用

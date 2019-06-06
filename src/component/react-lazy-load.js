@@ -6,7 +6,6 @@
  * @parmas style object 自定义样式
  * @parmas link string 标签中存真实地址的属性名
  * @parmas interval number 懒加载交流间隔
- * @parmas distance number 距离下方{distance}px的时候即可加载图片
  * @parmas distance number 距离浏览器底部(注意是浏览器窗口底部){distance}px的时候即可加载图片
  *
  * @this.state
